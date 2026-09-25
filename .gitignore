@@ -27,3 +27,13 @@ crashlytics-build.properties
 
 .DS_Store
 Thumbs.db
+# Сборки
+[Bb]uild/
+[Bb]uilds/
+test/
+
+# Служебное от Visual Studio / мастера обновления
+.vsconfig
+UpgradeLog.htm
+Backup/
+UpgradeLog*.htm
