@@ -725,6 +725,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 5051679690930724327, guid: 0576653c583b6e548b730ddc30393ce3, type: 3}
   enemiesToSpawn: 3
   spawnAreaSize: {x: 6, y: 4}
+  spawnInterval: 15
 --- !u!61 &584345748
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1466,6 +1467,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Hazard
   damagePerTick: 5
   tickInterval: 0.5
+  stillKillTime: 5
+  moveThreshold: 0.01
 --- !u!61 &1073449865
 BoxCollider2D:
   m_ObjectHideFlags: 0
