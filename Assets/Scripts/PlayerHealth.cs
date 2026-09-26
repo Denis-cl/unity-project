@@ -2,17 +2,21 @@ using UnityEngine;
 
 /// <summary>
 /// Здоровье игрока. Единственная ответственность — HP и получение урона.
-/// Движение живёт в PlayerController, сбор предметов — в Collectible (SRP).
+/// При HP = 0: флаг isDead, событие OnDeath (подписывается UI),
+/// остановка времени и запись поражения в консоль.
 /// </summary>
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;
 
     private int currentHealth;
-    private bool isDead = false;   // Флаг состояния (для отладочного вывода)
+    private bool isDead = false;
 
     public int CurrentHealth => currentHealth;
     public bool IsDead => isDead;
+
+    /// <summary>Событие смерти: подписывается GameOverUI, чтобы показать меню.</summary>
+    public event System.Action OnDeath;
 
     private void Awake()
     {
@@ -21,11 +25,9 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        // Отладочный вывод начального состояния (пункт 5 задания)
         Debug.Log($"[PlayerHealth] Старт. HP: {currentHealth}/{maxHealth}");
     }
 
-    /// <summary>Публичный метод урона — вызывают Enemy и Hazard.</summary>
     public void TakeDamage(int damage)
     {
         if (isDead) return;
@@ -33,12 +35,24 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         Debug.Log($"[PlayerHealth] Получен урон: {damage}. HP: {currentHealth}/{maxHealth}");
 
-        if (currentHealth <= 0)
-        {
-            currentHealth = 0;
-            isDead = true;
-            Debug.Log("[PlayerHealth] Игрок погиб. Game Over (прототип: просто останавливаем ввод)");
-            enabled = false; // Отключаем компонент: игрок больше не управляется
-        }
+        if (currentHealth <= 0) Die();
+    }
+
+    /// <summary>Мгновенная смерть (независимо от текущего HP).</summary>
+    public void Kill()
+    {
+        if (isDead) return;
+        Debug.Log("[PlayerHealth] Мгновенная смерть (Kill).");
+        Die();
+    }
+
+    private void Die()
+    {
+        currentHealth = 0;
+        isDead = true;
+        Debug.Log("=== ПОРАЖЕНИЕ === HP достигло нуля. Игра остановлена.");
+        Time.timeScale = 0f;   // Вся игра замирает, но UI продолжает работать
+
+        OnDeath?.Invoke();     // Уведомляем игроков (меню поражения)
     }
 }
