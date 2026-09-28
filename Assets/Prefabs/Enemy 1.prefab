@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 30/30
+  m_text: 60/60
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 2644437587232627782}
   - component: {fileID: 5834585268895875492}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: Enemy 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,7 +170,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2624447727593359238}
@@ -227,7 +227,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.9528302, g: 0.049439307, b: 0.049439307, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.24696922, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -325,9 +325,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyShooting
   bulletPrefab: {fileID: 386007932298912990, guid: 678a0e737369c8244a94ee494773e6a1, type: 3}
   firePoint: {fileID: 2624447727593359238}
-  shootRange: 8
-  fireInterval: 1.5
-  bulletSpeed: 6
+  shootRange: 20
+  fireInterval: 1
+  bulletSpeed: 10
 --- !u!114 &2644437587232627782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,7 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f75df08c34f8224c94cf6fae2c0e8a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 30
+  maxHealth: 60
   dropPrefabs:
   - {fileID: 4096638264053188840, guid: 4282fc5f98096b241864286657acd307, type: 3}
   - {fileID: 4096638264053188840, guid: 7d82932c006666548ba2ec73539613a6, type: 3}

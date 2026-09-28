@@ -57,3 +57,4 @@ public class EnemyHealth : MonoBehaviour
         if (healthText != null)
             healthText.text = $"{Mathf.Max(currentHealth, 0)}/{maxHealth}";
     }
+}
