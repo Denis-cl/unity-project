@@ -1,35 +1,45 @@
 using UnityEngine;
 
 /// <summary>
-/// Собираемый предмет (золото/бонус из GDD). 
-/// Тип взаимодействия: КОНТАКТ через триггер (OnTriggerEnter2D) —
-/// предмет не препятствие, сбор без столкновения.
+/// Собираемый предмет (золото). Контакт через триггер.
+/// Ведёт статический счёт очков и уведомляет игроков
+/// (VictoryManager) через событие OnScoreChanged.
 /// </summary>
 [RequireComponent(typeof(Collider2D))]
 public class Collectible : MonoBehaviour
 {
-    [SerializeField] private int value = 10;        // Ценность предмета (очки)
+    [SerializeField] private int value = 10;
 
-    private static int totalCollected = 0;          // Счётчик собранных (статический — общий для всех)
+    private static int totalCollected = 0;
     private static int totalScore = 0;
+
+    public static int TotalScore => totalScore;
+
+    /// <summary>Событие изменения счёта (передаёт текущий счёт).</summary>
+    public static event System.Action<int> OnScoreChanged;
 
     private void Awake()
     {
-        // Коллайдер предмета обязан быть триггером
         GetComponent<Collider2D>().isTrigger = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Проверяем, что вошёл именно игрок (по тегу)
         if (!other.CompareTag("Player")) return;
 
         totalCollected++;
         totalScore += value;
-
-        // Отладочный вывод состояния (пункт 5 задания)
         Debug.Log($"[Collectible] Собрано золото (+{value}). Всего предметов: {totalCollected}, очков: {totalScore}");
 
-        Destroy(gameObject); // Предмет исчезает 
+        OnScoreChanged?.Invoke(totalScore);   // Уведомляем VictoryManager
+
+        Destroy(gameObject);
+    }
+
+    /// <summary>Сброс счёта (вызывается при старте сцены — static переживает перезагрузку).</summary>
+    public static void ResetScore()
+    {
+        totalCollected = 0;
+        totalScore = 0;
     }
 }
