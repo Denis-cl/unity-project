@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3a675ac3f686b144b2c15e322b578f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  damage: 5
+  damage: 1
   attackCooldown: 1
 --- !u!114 &8681838699864462312
 MonoBehaviour:
@@ -309,8 +309,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73551f8c15c9d3d448aa491916f1e07f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyChase
-  moveSpeed: 9
-  stopDistance: 10
+  moveSpeed: 14
+  stopDistance: 15
 --- !u!114 &339195984432998865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyShooting
   bulletPrefab: {fileID: 386007932298912990, guid: 678a0e737369c8244a94ee494773e6a1, type: 3}
   firePoint: {fileID: 2624447727593359238}
-  shootRange: 25
+  shootRange: 30
   fireInterval: 1
   bulletSpeed: 10
 --- !u!114 &2644437587232627782
@@ -344,7 +344,7 @@ MonoBehaviour:
   dropPrefabs:
   - {fileID: 4096638264053188840, guid: 4282fc5f98096b241864286657acd307, type: 3}
   - {fileID: 4096638264053188840, guid: 7d82932c006666548ba2ec73539613a6, type: 3}
-  dropSpread: 0.5
+  dropSpread: 0.3
 --- !u!50 &5834585268895875492
 Rigidbody2D:
   serializedVersion: 5
