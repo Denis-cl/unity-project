@@ -57,12 +57,3 @@ public class EnemyHealth : MonoBehaviour
         if (healthText != null)
             healthText.text = $"{Mathf.Max(currentHealth, 0)}/{maxHealth}";
     }
-
-    // ===== ВРЕМЕННЫЙ КОД ДЛЯ ТЕСТА =====
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-            TakeDamage(10);
-    }
-    // ===== КОНЕЦ ВРЕМЕННОГО КОДА =====
-}
