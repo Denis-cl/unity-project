@@ -4271,7 +4271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c31210b58f0c04884a179f1bb8e99f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VictoryManager
-  scoreToWin: 450
+  scoreToWin: 400
 --- !u!1001 &2071141595
 PrefabInstance:
   m_ObjectHideFlags: 0
