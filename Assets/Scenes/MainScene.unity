@@ -3413,6 +3413,71 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af4c919e19484574cad3f825b325330a, type: 3}
+--- !u!1001 &1677574069
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1645503365331559413, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: useRadius
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1645503365331559413, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: healAmount
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106503357222947709, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.174234
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106503357222947709, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.358583
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106503357222947709, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106503357222947709, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106503357222947709, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106503357222947709, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106503357222947709, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106503357222947709, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106503357222947709, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106503357222947709, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519376851952097526, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_Name
+      value: Isometric Diamond (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
 --- !u!1001 &1810245317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4508,6 +4573,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fecd69089bb8a0458a881ce6ac5eabb, type: 3}
+--- !u!1001 &515228328897892345
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1645503365331559413, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: useRadius
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106503357222947709, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -26.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106503357222947709, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106503357222947709, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106503357222947709, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106503357222947709, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106503357222947709, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106503357222947709, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106503357222947709, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106503357222947709, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106503357222947709, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519376851952097526, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: m_Name
+      value: Isometric Diamond
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
 --- !u!1001 &2425480287562923762
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4736,3 +4862,5 @@ SceneRoots:
   - {fileID: 1473302671}
   - {fileID: 548987106}
   - {fileID: 1645431785}
+  - {fileID: 515228328897892345}
+  - {fileID: 1677574069}

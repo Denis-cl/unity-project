@@ -9,6 +9,9 @@ using UnityEngine;
 /// </summary>
 public class PlayerHealth : MonoBehaviour
 {
+    /// <summary>Состояние игрока — для читаемости логики и отладки.</summary>
+    public enum PlayerState { Alive, Invulnerable, Dead }
+
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private GameObject shieldVisual;   // Ореол (ShieldAura)
 
@@ -22,6 +25,11 @@ public class PlayerHealth : MonoBehaviour
     public bool IsInvulnerable => Time.time < invulnerableUntil;
     public float InvulnerableTimeLeft => Mathf.Max(0f, invulnerableUntil - Time.time);
 
+    /// <summary>Текущее состояние (производное от isDead и IsInvulnerable).</summary>
+    public PlayerState State =>
+        isDead ? PlayerState.Dead
+        : IsInvulnerable ? PlayerState.Invulnerable
+        : PlayerState.Alive;
     /// <summary>Событие смерти: подписывается GameOverUI.</summary>
     public event System.Action OnDeath;
 
@@ -32,7 +40,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log($"[PlayerHealth] Старт. HP: {currentHealth}/{maxHealth}");
+        Debug.Log($"[PlayerHealth] Старт. HP: {currentHealth}/{maxHealth}. Состояние: {State}");
     }
 
     private void Update()
@@ -62,7 +70,13 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0) Die();
     }
-
+    /// <summary>Лечение (используется HealingShrine).</summary>
+    public void Heal(int amount)
+    {
+        if (isDead) return;
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+        Debug.Log($"[PlayerHealth] Исцеление: +{amount}. HP: {currentHealth}/{maxHealth}");
+    }
     /// <summary>Неуязвимость на duration секунд (вызывает ShieldPickup).</summary>
     public void SetInvulnerable(float duration)
     {
