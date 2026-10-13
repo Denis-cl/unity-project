@@ -1,15 +1,11 @@
 using UnityEngine;
 
 /// <summary>
-/// Враг преследует игрока, но держит дистанцию stopDistance:
-/// ближе не подходит, стоит и стреляет. Движение через transform
-/// (кинематика, как у игрока). При Time.timeScale = 0 движение
-/// останавливается само (Time.deltaTime = 0).
+/// Преследование игрока с дистанцией остановки. Параметры — из EnemyStats.
 /// </summary>
 public class EnemyChase : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 2f;
-    [SerializeField] private float stopDistance = 4f;   // Дистанция, с которой враг стоит и стреляет
+    [SerializeField] private EnemyStats stats;   // Ассет с параметрами
 
     private Transform player;
 
@@ -21,14 +17,12 @@ public class EnemyChase : MonoBehaviour
 
     private void Update()
     {
-        if (player == null) return;
+        if (player == null || stats == null) return;
 
         float dist = Vector2.Distance(transform.position, player.position);
-        if (dist <= stopDistance) return;   // Достаточно близко — стоим, стреляет EnemyShooting
+        if (dist <= stats.StopDistance) return;   // стоим и стреляем
 
         transform.position = Vector2.MoveTowards(
-            transform.position,
-            player.position,
-            moveSpeed * Time.deltaTime);
+            transform.position, player.position, stats.MoveSpeed * Time.deltaTime);
     }
 }

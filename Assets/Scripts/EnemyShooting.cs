@@ -1,17 +1,14 @@
 using UnityEngine;
 
 /// <summary>
-/// Стрельба врага. Как только игрок оказывается в радиусе shootRange,
-/// враг с периодичностью fireInterval выпускает пулю по направлению
-/// к ТЕКУЩЕЙ позиции игрока (пуля не самонаводится — можно уворачиваться).
+/// Стрельба врага по игроку в радиусе ShootRange.
+/// Все параметры — из EnemyStats; урон пробрасывается в пулю при создании.
 /// </summary>
 public class EnemyShooting : MonoBehaviour
 {
-    [SerializeField] private GameObject bulletPrefab;    // Префаб EnemyBullet
-    [SerializeField] private Transform firePoint;        // Точка вылета пули
-    [SerializeField] private float shootRange = 8f;      // Радиус «видимости»
-    [SerializeField] private float fireInterval = 1.5f;  // Периодичность стрельбы
-    [SerializeField] private float bulletSpeed = 6f;     // Скорость пули
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private EnemyStats stats;   // Ассет с параметрами
+    [SerializeField] private Transform firePoint;
 
     private Transform player;
     private float nextFireTime;
@@ -24,17 +21,18 @@ public class EnemyShooting : MonoBehaviour
 
     private void Update()
     {
-        if (player == null) return;
+        if (player == null || stats == null) return;
 
         float dist = Vector2.Distance(transform.position, player.position);
-        if (dist > shootRange) return;              // Игрок далеко — не стреляем
-        if (Time.time < nextFireTime) return;       // Кулдаун
+        if (dist > stats.ShootRange) return;
+        if (Time.time < nextFireTime) return;
 
-        nextFireTime = Time.time + fireInterval;
+        nextFireTime = Time.time + stats.FireInterval;
 
         Vector2 dir = ((Vector2)player.position - (Vector2)firePoint.position).normalized;
         var bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-        bullet.GetComponent<EnemyBullet>().Init(dir, bulletSpeed);
+        // Урон и скорость пули передаются из EnemyStats в момент выстрела
+        bullet.GetComponent<EnemyBullet>().Init(dir, stats.BulletSpeed, stats.BulletDamage);
 
         Debug.Log("[EnemyShooting] Враг выстрелил!");
     }

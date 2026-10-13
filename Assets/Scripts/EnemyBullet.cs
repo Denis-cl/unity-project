@@ -1,26 +1,24 @@
 using UnityEngine;
 
 /// <summary>
-/// Пуля врага. Летит по прямой, наносит урон ТОЛЬКО игроку.
-/// Исчезает по истечении lifeTime (стен в арене нет — пуля просто улетает).
-/// Игрок может уклоняться: пуля не самонаводится, направление фиксируется
-/// в момент выстрела.
+/// Пуля врага. Урон и скорость задаются при выстреле через Init()
+/// (из EnemyStats) — сама пуля ничего не знает о балансе.
 /// </summary>
 [RequireComponent(typeof(Collider2D))]
 public class EnemyBullet : MonoBehaviour
 {
-    [SerializeField] private int damage = 10;
     [SerializeField] private float lifeTime = 4f;
 
     private Vector2 direction;
     private float speed;
+    private int damage;
 
-    /// <summary>Направление и скорость задаёт EnemyShooting в момент выстрела.</summary>
-    public void Init(Vector2 dir, float spd)
+    public void Init(Vector2 dir, float spd, int dmg)
     {
         direction = dir;
         speed = spd;
-        Destroy(gameObject, lifeTime);   // Страховка от скопления пуль
+        damage = dmg;
+        Destroy(gameObject, lifeTime);
     }
 
     private void Awake()

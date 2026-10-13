@@ -1,48 +1,45 @@
 using UnityEngine;
 
 /// <summary>
-/// Стрельба игрока. ЛКМ — выстрел снарядом в направлении курсора.
-/// Пушка (Gun) поворачивается за мышью, снаряд вылетает из её дула (Fire Point).
-/// Скорострельность ограничена fireRate (зажатая кнопка ≠ пулемёт).
+/// Стрельба игрока: ПРОБЕЛ — выстрел в направлении курсора.
+/// Скорость снаряда и скорострельность — из PlayerStats (data-driven).
 /// </summary>
 public class PlayerShooting : MonoBehaviour
 {
-    [SerializeField] private GameObject projectilePrefab;  // Префаб снаряда
-    [SerializeField] private Transform gun;                // Пушка (вращается за мышью)
-    [SerializeField] private Transform firePoint;          // Дуло (точка вылета снаряда)
-    [SerializeField] private float projectileSpeed = 12f;
-    [SerializeField] private float fireRate = 0.25f;       // Секунд между выстрелами
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private PlayerStats stats;   // Ассет с параметрами
+    [SerializeField] private Transform gun;
+    [SerializeField] private Transform firePoint;
 
     private Camera cam;
     private float nextFireTime;
 
     private void Awake()
     {
-        cam = Camera.main;   // Кэшируем один раз 
+        cam = Camera.main;
     }
 
     private void Update()
     {
-        if (cam == null) return;
+        if (cam == null || stats == null) return;
 
-        // --- Прицеливание: пушка поворачивается к курсору ---
+        // Прицеливание: пушка поворачивается к курсору
         Vector2 mouseWorld = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 toMouse = mouseWorld - (Vector2)transform.position;
         float angle = Mathf.Atan2(toMouse.y, toMouse.x) * Mathf.Rad2Deg;
         if (gun != null) gun.rotation = Quaternion.Euler(0, 0, angle);
 
-        // --- Стрельба: ЛКМ с ограничением скорострельности ---
-        if (!Input.GetMouseButton(0)) return;    // ЛКМ не зажата — не стреляем
+        if (!Input.GetKey(KeyCode.Space)) return;
         if (Time.time < nextFireTime) return;
 
-        nextFireTime = Time.time + fireRate;
+        nextFireTime = Time.time + stats.FireRate;
         Fire(toMouse.normalized);
     }
 
     private void Fire(Vector2 direction)
     {
         var proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-        proj.GetComponent<Projectile>().Init(direction, projectileSpeed);
+        proj.GetComponent<Projectile>().Init(direction, stats.ProjectileSpeed);
         Debug.Log("[PlayerShooting] Выстрел!");
     }
 }

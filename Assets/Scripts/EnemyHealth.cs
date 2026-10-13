@@ -2,23 +2,21 @@ using UnityEngine;
 using TMPro;
 
 /// <summary>
-/// Здоровье врага. При HP = 0 враг исчезает и роняет случайный бонус
-/// из списка dropPrefabs (разная ценность: обычная/дорогая монета).
-/// Монетка появляется рядом с местом смерти (случайный разброс
-/// в радиусе dropSpread, чтобы выглядело «выпадением»).
+/// HP врага (максимум — из EnemyStats) + дроп монеток.
+/// Полоска HP над головой ищется автоматически.
 /// </summary>
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 30;
-    [SerializeField] private GameObject[] dropPrefabs;   // Возможные дропы
-    [SerializeField] private float dropSpread = 0.5f;    // Радиус разброса дропа
+    [SerializeField] private EnemyStats stats;        // Ассет с параметрами
+    [SerializeField] private GameObject[] dropPrefabs;
+    [SerializeField] private float dropSpread = 0.5f;
 
     private int currentHealth;
     private TMP_Text healthText;
 
     private void Awake()
     {
-        currentHealth = maxHealth;
+        currentHealth = stats.MaxHealth;
         healthText = GetComponentInChildren<TMP_Text>();
     }
 
@@ -30,7 +28,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        Debug.Log($"[EnemyHealth] Враг получил {damage} урона. HP: {currentHealth}/{maxHealth}");
+        Debug.Log($"[EnemyHealth] Враг получил {damage} урона. HP: {currentHealth}/{stats.MaxHealth}");
         UpdateText();
 
         if (currentHealth <= 0) Die();
@@ -40,11 +38,9 @@ public class EnemyHealth : MonoBehaviour
     {
         Debug.Log("[EnemyHealth] Враг уничтожен! Выпал бонус.");
 
-        // Случайный дроп из списка
         if (dropPrefabs != null && dropPrefabs.Length > 0)
         {
             var drop = dropPrefabs[Random.Range(0, dropPrefabs.Length)];
-            // Позиция: место смерти + случайное смещение в радиусе dropSpread
             Vector3 pos = transform.position + (Vector3)(Random.insideUnitCircle * dropSpread);
             Instantiate(drop, pos, Quaternion.identity);
         }
@@ -55,6 +51,6 @@ public class EnemyHealth : MonoBehaviour
     private void UpdateText()
     {
         if (healthText != null)
-            healthText.text = $"{Mathf.Max(currentHealth, 0)}/{maxHealth}";
+            healthText.text = $"{Mathf.Max(currentHealth, 0)}/{stats.MaxHealth}";
     }
 }

@@ -1,30 +1,29 @@
 using UnityEngine;
 
 /// <summary>
-/// Зона спавна врагов (Proximity из GDD).
-/// 1) При входе игрока — стартовая волна (enemiesToSpawn штук).
-/// 2) Далее каждые spawnInterval секунд — по одному врагу, бесконечно.
+/// Спавн врагов: стартовая волна при входе + бесконечный таймер.
+/// Интервал подкреплений — из GameBalance (data-driven).
 /// </summary>
 public class SpawnZone : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameBalance balance;   // Ассет с параметрами
     [SerializeField] private int enemiesToSpawn = 3;
     [SerializeField] private Vector2 spawnAreaSize = new Vector2(6, 4);
-    [SerializeField] private float spawnInterval = 15f;   // Одно «подкрепление» за интервал
 
     private bool hasTriggered = false;
     private float nextSpawnTime;
 
     private void Start()
     {
-        nextSpawnTime = Time.time + spawnInterval;
+        nextSpawnTime = Time.time + balance.SpawnInterval;
     }
 
     private void Update()
     {
         if (Time.time >= nextSpawnTime)
         {
-            nextSpawnTime = Time.time + spawnInterval;
+            nextSpawnTime = Time.time + balance.SpawnInterval;
             SpawnEnemy();
             Debug.Log("[SpawnZone] Таймер: +1 враг.");
         }
@@ -40,7 +39,6 @@ public class SpawnZone : MonoBehaviour
 
         for (int i = 0; i < enemiesToSpawn; i++) SpawnEnemy();
 
-        // Одноразовый триггер прячем, таймер продолжает работать
         GetComponent<Collider2D>().enabled = false;
         var sr = GetComponent<SpriteRenderer>();
         if (sr != null) sr.enabled = false;

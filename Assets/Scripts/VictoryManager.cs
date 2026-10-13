@@ -1,39 +1,28 @@
 using UnityEngine;
 
 /// <summary>
-/// Условие победы: счёт золота достиг scoreToWin.
-/// Подписывается на событие Collectible.OnScoreChanged.
-/// При победе: лог в консоль, остановка времени, событие OnVictory
-/// (подписывается VictoryUI — показывает панель «ПОБЕДА»).
+/// Условие победы: счёт золота >= ScoreToWin (из GameBalance).
 /// </summary>
 public class VictoryManager : MonoBehaviour
 {
-    [SerializeField] private int scoreToWin = 100;
+    [SerializeField] private GameBalance balance;   // Ассет с параметрами
 
     private bool hasWon = false;
 
-    /// <summary>Событие победы: подписывается VictoryUI.</summary>
     public event System.Action OnVictory;
 
     private void Awake()
     {
-        // Static-поля переживают перезагрузку сцены — новая попытка начинается с нуля
+        // Static-поля переживают перезагрузку сцены — новая попытка с нуля
         Collectible.ResetScore();
     }
 
-    private void OnEnable()
-    {
-        Collectible.OnScoreChanged += CheckScore;
-    }
-
-    private void OnDisable()
-    {
-        Collectible.OnScoreChanged -= CheckScore;
-    }
+    private void OnEnable() { Collectible.OnScoreChanged += CheckScore; }
+    private void OnDisable() { Collectible.OnScoreChanged -= CheckScore; }
 
     private void CheckScore(int score)
     {
-        if (hasWon || score < scoreToWin) return;
+        if (hasWon || score < balance.ScoreToWin) return;
 
         hasWon = true;
         Debug.Log($"=== ПОБЕДА === Счёт {score} достигнут! Цель выполнена.");
