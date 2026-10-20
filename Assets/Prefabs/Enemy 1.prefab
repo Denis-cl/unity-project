@@ -149,10 +149,9 @@ GameObject:
   - component: {fileID: 9143443596862564255}
   - component: {fileID: 7674187887846801543}
   - component: {fileID: 3224690934871703945}
-  - component: {fileID: 8681838699864462312}
-  - component: {fileID: 339195984432998865}
   - component: {fileID: 2644437587232627782}
   - component: {fileID: 5834585268895875492}
+  - component: {fileID: 6853489107906960773}
   m_Layer: 6
   m_Name: Enemy 1
   m_TagString: Untagged
@@ -297,34 +296,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   damage: 20
   attackCooldown: 1
---- !u!114 &8681838699864462312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5051679690930724327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73551f8c15c9d3d448aa491916f1e07f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyChase
-  stats: {fileID: 11400000, guid: 48e45d39b1d46d041b5ac297caba2569, type: 2}
---- !u!114 &339195984432998865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5051679690930724327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1488b13c7004cc449d93a08b9d707a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyShooting
-  bulletPrefab: {fileID: 386007932298912990, guid: 678a0e737369c8244a94ee494773e6a1, type: 3}
-  stats: {fileID: 11400000, guid: 48e45d39b1d46d041b5ac297caba2569, type: 2}
-  firePoint: {fileID: 2624447727593359238}
 --- !u!114 &2644437587232627782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,6 +341,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &6853489107906960773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5051679690930724327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5669605f263ac8944848e2821f19b8a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyFSM
+  stats: {fileID: 11400000, guid: 48e45d39b1d46d041b5ac297caba2569, type: 2}
+  bulletPrefab: {fileID: 386007932298912990, guid: 678a0e737369c8244a94ee494773e6a1, type: 3}
+  firePoint: {fileID: 0}
+  aggroRadius: 6
+  loseRadius: 12
+  idleDuration: {x: 2, y: 5}
 --- !u!1 &5222744882484275267
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,7 +17,12 @@ public class EnemyFSM : MonoBehaviour
     [Header("Ссылки")]
     [SerializeField] private EnemyStats stats;          // Параметры из SO (data-driven)
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform firePoint;
+    [SerializeField] private Transform firePoint;   // Можно оставить пустым
+
+    /// <summary>Точка вылета: FirePoint, а если не назначен — центр врага.</summary>
+    private Vector2 FirePos => firePoint != null
+        ? (Vector2)firePoint.position
+        : (Vector2)transform.position;
 
     [Header("Детекция")]
     [SerializeField, Tooltip("Радиус, в котором враг замечает игрока (Idle → Chase)")]
@@ -174,8 +179,8 @@ public class EnemyFSM : MonoBehaviour
 
     private void Shoot()
     {
-        Vector2 dir = ((Vector2)player.position - (Vector2)firePoint.position).normalized;
-        var bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        Vector2 dir = ((Vector2)player.position - FirePos).normalized;
+        var bullet = Instantiate(bulletPrefab, FirePos, Quaternion.identity);
         bullet.GetComponent<EnemyBullet>().Init(dir, stats.BulletSpeed, stats.BulletDamage);
     }
 

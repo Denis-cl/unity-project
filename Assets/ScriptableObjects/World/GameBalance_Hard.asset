@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a43edbed23b4b459c727a51a0e78b9, type: 3}
   m_Name: GameBalance_Hard
   m_EditorClassIdentifier: Assembly-CSharp::GameBalance
-  spawnInterval: 10
+  spawnInterval: 5
   hazardDamagePerTick: 8
   stillKillTime: 4
-  scoreToWin: 500
+  scoreToWin: 1000

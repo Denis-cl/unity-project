@@ -3,16 +3,20 @@ using TMPro;
 
 /// <summary>
 /// HP врага (максимум — из EnemyStats) + дроп монеток.
-/// Полоска HP над головой ищется автоматически.
+/// Сообщает о смерти через событие OnDied (подписан EnemyFSM).
+/// Перед уничтожением — пауза 0.5 сек: игрок видит состояние Dead (серый).
 /// </summary>
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private EnemyStats stats;        // Ассет с параметрами
+    [SerializeField] private EnemyStats stats;
     [SerializeField] private GameObject[] dropPrefabs;
     [SerializeField] private float dropSpread = 0.5f;
 
     private int currentHealth;
     private TMP_Text healthText;
+
+    /// <summary>Событие смерти (подписывается EnemyFSM).</summary>
+    public event System.Action OnDied;
 
     private void Awake()
     {
@@ -45,7 +49,11 @@ public class EnemyHealth : MonoBehaviour
             Instantiate(drop, pos, Quaternion.identity);
         }
 
-        Destroy(gameObject);
+        OnDied?.Invoke();   // Уведомляем FSM: состояние Dead
+
+        // Визуал смерти: отключаем коллайдер и даём 0.5 сек на "серое" состояние
+        GetComponent<Collider2D>().enabled = false;
+        Destroy(gameObject, 0.5f);
     }
 
     private void UpdateText()
