@@ -8,7 +8,6 @@ using UnityEngine;
 public class HealingShrine : MonoBehaviour
 {
     [SerializeField] private int healAmount = 50;
-    [SerializeField] private float useRadius = 2f;
     [SerializeField] private bool oneTimeUse = true;
 
     private bool playerInRange = false;

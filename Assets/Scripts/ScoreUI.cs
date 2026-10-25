@@ -2,33 +2,24 @@ using UnityEngine;
 using TMPro;
 
 /// <summary>
-/// Счёт золота на экране (вечный режим).
-/// Подписывается на статическое событие Collectible.OnScoreChanged —
-/// текст обновляется только при сборе монеты (без работы каждый кадр).
+/// HUD: золото текущего забега + рекорд (из SaveManager).
 /// </summary>
 public class ScoreUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text scoreText;
 
-    private void OnEnable()
-    {
-        // Static-событие живёт между сценами — подписываем/отписываем аккуратно
-        Collectible.OnScoreChanged += UpdateText;
-    }
-
-    private void OnDisable()
-    {
-        Collectible.OnScoreChanged -= UpdateText;
-    }
+    private void OnEnable() { Collectible.OnScoreChanged += UpdateText; }
+    private void OnDisable() { Collectible.OnScoreChanged -= UpdateText; }
 
     private void Start()
     {
-        UpdateText(Collectible.TotalScore);   // начальное значение
+        UpdateText(Collectible.TotalScore);
     }
 
     private void UpdateText(int score)
     {
-        if (scoreText != null)
-            scoreText.text = $"Золото: {score}";
+        if (scoreText == null) return;
+        int record = SaveManager.Instance != null ? SaveManager.Instance.HighScore : 0;
+        scoreText.text = $"Золото: {score}   Рекорд: {record}";
     }
 }
