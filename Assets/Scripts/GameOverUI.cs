@@ -10,6 +10,7 @@ public class GameOverUI : MonoBehaviour
 {
     [SerializeField] private PlayerHealth playerHealth;   // Здоровье игрока
     [SerializeField] private GameObject gameOverPanel;    // Панель меню (скрыта до смерти)
+    [SerializeField] private GameObject hudScore;   // Счёт вверху экрана — прячем при поражении
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class GameOverUI : MonoBehaviour
     private void Show()
     {
         if (gameOverPanel != null) gameOverPanel.SetActive(true);
+        if (hudScore != null) hudScore.SetActive(false);
         Debug.Log("[GameOverUI] Показано меню поражения.");
     }
 
