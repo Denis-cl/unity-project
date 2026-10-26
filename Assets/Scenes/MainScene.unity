@@ -4798,6 +4798,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1645503365331559413, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
+      propertyPath: totalHeal
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1645503365331559413, guid: ec290b6569cd4044e9a642646536a13d, type: 3}
       propertyPath: useRadius
       value: 15
       objectReference: {fileID: 0}
