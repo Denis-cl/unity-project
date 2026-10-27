@@ -356,8 +356,8 @@ MonoBehaviour:
   stats: {fileID: 11400000, guid: 1665610353d58004390187fd60447d0f, type: 2}
   bulletPrefab: {fileID: 386007932298912990, guid: 678a0e737369c8244a94ee494773e6a1, type: 3}
   firePoint: {fileID: 0}
-  aggroRadius: 10
-  loseRadius: 15
+  aggroRadius: 20
+  loseRadius: 30
   idleDuration: {x: 2, y: 5}
 --- !u!1 &5222744882484275267
 GameObject:

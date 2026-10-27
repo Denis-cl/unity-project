@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: EnemyStats_Normal
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   maxHealth: 30
-  moveSpeed: 2
+  moveSpeed: 7
   stopDistance: 4
   shootRange: 8
-  fireInterval: 1.5
-  bulletSpeed: 6
+  fireInterval: 1
+  bulletSpeed: 8
   bulletDamage: 10

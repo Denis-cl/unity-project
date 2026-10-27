@@ -16,6 +16,6 @@ MonoBehaviour:
   moveSpeed: 3
   stopDistance: 4
   shootRange: 10
-  fireInterval: 1.2
-  bulletSpeed: 7
+  fireInterval: 0.5
+  bulletSpeed: 5
   bulletDamage: 15

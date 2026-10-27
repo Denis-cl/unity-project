@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f75df08c34f8224c94cf6fae2c0e8a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  stats: {fileID: 11400000, guid: c384dc96379c6e745b740eb246a4b2af, type: 2}
+  stats: {fileID: 11400000, guid: 48e45d39b1d46d041b5ac297caba2569, type: 2}
   dropPrefabs:
   - {fileID: 4096638264053188840, guid: 4282fc5f98096b241864286657acd307, type: 3}
   - {fileID: 4096638264053188840, guid: 7d82932c006666548ba2ec73539613a6, type: 3}
@@ -355,8 +355,8 @@ MonoBehaviour:
   stats: {fileID: 11400000, guid: 48e45d39b1d46d041b5ac297caba2569, type: 2}
   bulletPrefab: {fileID: 386007932298912990, guid: 678a0e737369c8244a94ee494773e6a1, type: 3}
   firePoint: {fileID: 0}
-  aggroRadius: 16
-  loseRadius: 18
+  aggroRadius: 23
+  loseRadius: 25
   idleDuration: {x: 2, y: 5}
 --- !u!1 &5222744882484275267
 GameObject:
